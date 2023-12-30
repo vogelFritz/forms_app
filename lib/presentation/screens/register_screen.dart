@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forms_app/presentation/widgets/widgets.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -17,27 +18,42 @@ class _RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const FlutterLogo(size: 500),
-              TextFormField(),
-              TextFormField(),
-              TextFormField(),
-              TextFormField(),
-              FilledButton.tonalIcon(
-                  onPressed: () {},
-                  label: const Text('Crear usuario'),
-                  icon: const Icon(Icons.save)),
-              const SizedBox(height: 20)
+              FlutterLogo(size: 100),
+              _RegisterForm(),
+              SizedBox(height: 20)
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _RegisterForm extends StatelessWidget {
+  const _RegisterForm({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      child: Column(children: [
+        const CustomTextFormField(label: 'Nombre de usuario'),
+        const SizedBox(height: 10),
+        const CustomTextFormField(label: 'Correo electrónico'),
+        const SizedBox(height: 10),
+        const CustomTextFormField(label: 'Contraseña', obscureText: true),
+        const SizedBox(height: 20),
+        FilledButton.tonalIcon(
+            onPressed: () {},
+            label: const Text('Crear usuario'),
+            icon: const Icon(Icons.save)),
+      ]),
     );
   }
 }
